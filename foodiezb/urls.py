@@ -20,7 +20,14 @@ from backend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("signin/",views.SigninView.as_view(),name="signin"),
-    path("register/",views.RegisterView.as_view(),name="register"),
-]
+    path("signin/", views.SigninView.as_view(), name="signin"),
+    path("register/", views.RegisterView.as_view(), name="register"),
+    path('list/category/', views.Categorylist.as_view(), name='category'),
+    path('create/category/', views.Categorycreate.as_view(),
+         name='create-category'),
+    path('create/recipes/', views.RecipeCreateView.as_view(),
+         name='create-recipes'),
+    path('list/recipes/', views.Recipelist.as_view(), name='recipes'),
+    path('delete/recipes/', views.DeleteRecipeView.as_view(), name='delete-recipes'),
 
+]
