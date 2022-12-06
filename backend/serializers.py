@@ -8,13 +8,13 @@ class RegisterSerializer(serializers.ModelSerializer):
     access = serializers.CharField(allow_blank=True, read_only=True)
     class Meta:
         model=User
-        fields=["username","password"]
+        fields=["id","access","username","password"]
 
-    def craete(self, validated_data):
+    def create(self, validated_data):
         username=validated_data["username"]
         password=validated_data["password"]
         new_user=User(username=username)
-        new_user=User.set_password(password)
+        new_user.set_password(password)
         new_user.save()
         
         payload = RefreshToken.for_user(new_user)
@@ -47,7 +47,7 @@ class SigninSerializer(serializers.Serializer):
         payload = RefreshToken.for_user(user)
         payload["username"]=user.username
         token = str(payload.access_token)
-        data["username"]=str(payload.access_token)
+        data["username"]=user.username
         
         data["access"] = token
         return data
