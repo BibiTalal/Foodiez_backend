@@ -10,7 +10,8 @@ class Ingredient (models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=255)
-    ingredient = models.ManyToManyField(Ingredient, related_name='ingredient')
+    ingredients = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    # ingredients = models.ManyToManyField(Ingredient, related_name='categories')
 
     def __str__(self):
         return self.category_name
@@ -21,9 +22,14 @@ class Recipe (models.Model):
     recipe = models.TextField()
     # image = models.ImageField(blank=True, null=True)
     description = models.TextField()
-    ingredient = models.ManyToManyField(
-        Ingredient, related_name='Recipe_ingredient')
-    category = models.ManyToManyField(Category, related_name='category')
+
+    ingredients = models.ForeignKey(
+        Ingredient, on_delete=models.CASCADE)
+    # ingredients = models.ManyToManyField(
+    #     Ingredient, related_name='Recipe_ingredients')
+
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    # category = models.ManyToManyField(Category, related_name='categories')
 
     def __str__(self):
         return self.food_name

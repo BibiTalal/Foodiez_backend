@@ -24,7 +24,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         token = str(payload.access_token)
 
         validated_data["access"] = token
-        print("Successfully Created An Acount with FOODIEZ")
+        # print("Successfully Created An Acount with FOODIEZ")
 
         return validated_data
 
@@ -56,21 +56,21 @@ class SigninSerializer(serializers.Serializer):
         return data
 
 
-class ListSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['category_name', 'ingredient']
+        fields = ['id', 'category_name', 'ingredient']
 
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         user = serializers.PrimaryKeyRelatedField(read_only=True)
         model = Recipe
-        fields = ['food_name', 'category',
+        fields = ['id', 'food_name', 'category',
                   'description', 'ingredient', 'recipe']
 
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['ingredient_name']
+        fields = ['id', 'ingredient_name']

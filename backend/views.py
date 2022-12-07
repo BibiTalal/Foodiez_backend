@@ -29,11 +29,11 @@ class SigninView(APIView):
 
 class Categorylist(ListAPIView):
     queryset = Category.objects.all()
-    serializer_class = serializers.ListSerializer
+    serializer_class = serializers.CategorySerializer
 
 
 class Categorycreate(CreateAPIView):
-    serializer_class = serializers.ListSerializer
+    serializer_class = serializers.CategorySerializer
 
 
 class Recipelist(ListAPIView):
@@ -50,4 +50,4 @@ class RecipeCreateView(CreateAPIView):
 
 class DeleteRecipeView(DestroyAPIView):
     queryset = Recipe.objects.all()
-    serializer_class = serializers.ListSerializer
+    serializer_class = serializers.CategorySerializer

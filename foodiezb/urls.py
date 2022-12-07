@@ -25,9 +25,10 @@ urlpatterns = [
     path('list/category/', views.Categorylist.as_view(), name='category'),
     path('create/category/', views.Categorycreate.as_view(),
          name='create-category'),
-    path('create/recipes/', views.RecipeCreateView.as_view(),
+    path('recipes/add/', views.RecipeCreateView.as_view(),
          name='create-recipes'),
-    path('list/recipes/', views.Recipelist.as_view(), name='recipes'),
-    path('delete/recipes/', views.DeleteRecipeView.as_view(), name='delete-recipes'),
+    path('recipes/', views.Recipelist.as_view(), name='recipes'),
+    path('recipes/int:recipe_id/delete',
+         views.DeleteRecipeView.as_view(), name='delete-recipes'),
 
 ]
