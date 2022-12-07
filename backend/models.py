@@ -10,8 +10,8 @@ class Ingredient (models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=255)
-    ingredients = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    # ingredients = models.ManyToManyField(Ingredient, related_name='categories')
+    # ingredients = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    ingredients = models.ManyToManyField(Ingredient, related_name='categories')
 
     def __str__(self):
         return self.category_name
@@ -23,13 +23,13 @@ class Recipe (models.Model):
     # image = models.ImageField(blank=True, null=True)
     description = models.TextField()
 
-    ingredients = models.ForeignKey(
-        Ingredient, on_delete=models.CASCADE)
-    # ingredients = models.ManyToManyField(
-    #     Ingredient, related_name='Recipe_ingredients')
+    # ingredients = models.ForeignKey(
+    #     Ingredient, on_delete=models.CASCADE)
+    ingredients = models.ManyToManyField(
+        Ingredient, related_name='Recipe_ingredients')
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    # category = models.ManyToManyField(Category, related_name='categories')
+    # category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category, related_name='categories')
 
     def __str__(self):
         return self.food_name
