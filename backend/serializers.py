@@ -59,18 +59,17 @@ class SigninSerializer(serializers.Serializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'category_name', 'ingredient']
+        fields = ['id', 'category_name']
 
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
-        user = serializers.PrimaryKeyRelatedField(read_only=True)
         model = Recipe
         fields = ['id', 'food_name', 'category',
-                  'description', 'ingredient', 'recipe']
+                  'description', 'ingredients', 'recipe']
 
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['id', 'ingredient_name']
+        fields = ['id', 'ingredient_name', "category"]
