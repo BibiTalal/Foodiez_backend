@@ -8,19 +8,19 @@
 # class IngredientForm(forms.ModelForm):
 #     class Meta:
 #         model = Ingredient
-#         fields = ['ingredient_name']
+#         fields = ['name']
 
 
 # class CategoryForm(forms.ModelForm):
 #     class Meta:
 #         model = Category
-#         fields = ['category_name']
+#         fields = ['name']
 
 
 # class RecipeForm(forms.ModelForm):
 #     class Meta:
 #         model = Recipe
-#         fields = ['food_name', 'recipe', 'category', 'ingredient']
+#         fields = ['name', 'recipe', 'category', 'ingredient']
 
 
 # class RegisterForm(forms.ModelForm):

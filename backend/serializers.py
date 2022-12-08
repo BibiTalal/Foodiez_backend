@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from backend.models import Category, Ingredient, Recipe
 User = get_user_model()
 
+# Authentications Serializers ..
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -55,21 +57,32 @@ class SigninSerializer(serializers.Serializer):
         data["access"] = token
         return data
 
+# Category Serializer ..
+
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'category_name']
+        fields = ['id', 'name']
+
+# Recipes Serializer ..
 
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ['id', 'food_name', 'category',
-                  'description', 'ingredients', 'recipe']
+        fields = ['id', 'name', 'category', 'ingredients', 'recipe']
+
+
+class RecipeUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = ['name', 'ingredients', 'category', 'recipe']
+
+# Ingredient Serializer ..
 
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['id', 'ingredient_name', "category"]
+        fields = ['id', 'name', "category"]

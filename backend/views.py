@@ -5,7 +5,7 @@ from backend import serializers
 from rest_framework.views import APIView
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
 
 from backend.models import Category, Recipe
 
@@ -26,6 +26,8 @@ class SigninView(APIView):
         else:
             return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
+# The Category Crud ..
+
 
 class Categorylist(ListAPIView):
     queryset = Category.objects.all()
@@ -34,6 +36,8 @@ class Categorylist(ListAPIView):
 
 class Categorycreate(CreateAPIView):
     serializer_class = serializers.CategorySerializer
+
+# The Recipe Crud ..
 
 
 class Recipelist(ListAPIView):
@@ -48,6 +52,18 @@ class RecipeCreateView(CreateAPIView):
         serializer.save()
 
 
+class RecipeUpdateView(UpdateAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = serializers.RecipeUpdateSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'recipe_id'
+
+
 class DeleteRecipeView(DestroyAPIView):
     queryset = Recipe.objects.all()
-    serializer_class = serializers.CategorySerializer
+    serializer_class = serializers.RecipeSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'recipe_id'
+
+
+# The ingredients Crud ..
