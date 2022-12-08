@@ -82,6 +82,12 @@ class RecipeUpdateSerializer(serializers.ModelSerializer):
 # Ingredient Serializer ..
 
 
+class IngrediantUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = ['name', 'ingredients', 'category', 'recipe']
+
+
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient

@@ -20,7 +20,7 @@ class Ingredient (models.Model):
 class Recipe (models.Model):
     name = models.CharField(max_length=255)
     recipe = models.TextField()
-    # image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to='static/media', null=True)
     # description = models.TextField()
 
     ingredients = models.ManyToManyField(

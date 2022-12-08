@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from backend import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -28,9 +30,20 @@ urlpatterns = [
     path('recipes/add/', views.RecipeCreateView.as_view(),
          name='create-recipes'),
     path('recipes/', views.Recipelist.as_view(), name='recipes'),
-    path('recipes/<int:recipe_id>/update/',
+    path('recipes/update/<int:id>',
          views.RecipeUpdateView.as_view(), name='update-recipes'),
-    path('recipes/<int:recipe_id>/delete/',
+    path('recipes/delete/<int:id>/',
          views.DeleteRecipeView.as_view(), name='delete-recipes'),
-
+    path('list/ingrediants/', views.IngrediantCreateView.as_view(), name='ingrediants'),
+    path('ingrediants/update/<int:id>/',
+         views.IngrediantUpdateView.as_view(), name='update-ingrediants'),
+    path('ingrediants/delete/<int:id>/',
+         views.DeleteIngrediantView.as_view(), name='delete-ingrediants'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

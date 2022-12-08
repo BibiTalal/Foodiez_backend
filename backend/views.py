@@ -1,13 +1,13 @@
-from django.shortcuts import render
-from django.shortcuts import render
+
 from rest_framework import generics
 from backend import serializers
 from rest_framework.views import APIView
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
+from rest_framework.decorators import api_view
 
-from backend.models import Category, Recipe
+from .models import Category, Recipe, Ingredient
 
 
 class RegisterView(generics.CreateAPIView):
@@ -56,14 +56,77 @@ class RecipeUpdateView(UpdateAPIView):
     queryset = Recipe.objects.all()
     serializer_class = serializers.RecipeUpdateSerializer
     lookup_field = 'id'
-    lookup_url_kwarg = 'recipe_id'
+    # lookup_url_kwarg = 'recipe_id'
+
+    def update(recipe_id, request):
+        recipe = Recipe.objects.get(id=recipe_id)
+        serializer = Recipelist.get_serializer(request.POST, instance=Recipe)
+        if request.method == "POST":
+            if serializer.is_valid():
+                serializer.save()
+                return ("update succefully")
+            else:
+                return Response("failed")
+
+
+# class RecipeUpdateView(UpdateAPIView):
+#     @api_view(['POST'])
+#     def update(request, id):
+#         item = Recipe.objects.get(id=id)
+#         data = serializers.RecipeUpdateSerializer(
+#             instance=item, data=request.data)
 
 
 class DeleteRecipeView(DestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = serializers.RecipeSerializer
     lookup_field = 'id'
-    lookup_url_kwarg = 'recipe_id'
+    # queryset = Recipe.objects.all()
+    # serializer_class = serializers.RecipeSerializer
+    # lookup_field = 'id'
+    # lookup_url_kwarg = 'recipe_id'
+
+    def DeleteRecipe(request, recipe_id):
+        Recipe.objects.get(id=recipe_id)
+        return ("Done you deleated one recipe!!")
 
 
 # The ingredients Crud ..
+
+class IngrediantList(ListAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = serializers.IngredientSerializer
+
+
+class IngrediantCreateView(CreateAPIView):
+    serializer_class = serializers.IngredientSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class IngrediantUpdateView(UpdateAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = serializers.IngrediantUpdateSerializer
+    lookup_field = 'id'
+
+    def update(ingrediant_id, request):
+        recipe = Ingredient.objects.get(id=ingrediant_id)
+        serializer = IngrediantList.get_serializer(
+            request.POST, instance=Ingredient)
+        if request.method == "POST":
+            if serializer.is_valid():
+                serializer.save()
+                return ("update succefully")
+            else:
+                return Response("failed")
+
+
+class DeleteIngrediantView(DestroyAPIView):
+    queryset = Ingredient.objects.all()
+    serializer_class = serializers.IngredientSerializer
+    lookup_field = 'id'
+
+    def DeleteIngrediant(request, ingrediant_id):
+        Recipe.objects.get(id=ingrediant_id).delete()
+        return ("Done you deleated one recipe!!")
