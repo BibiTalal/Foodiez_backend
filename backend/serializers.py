@@ -63,7 +63,7 @@ class SigninSerializer(serializers.Serializer):
 class CuisineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cuisine
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'image']
 
 # Recipes Serializer ..
 
@@ -71,13 +71,13 @@ class CuisineSerializer(serializers.ModelSerializer):
 class DishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
-        fields = ['id', 'name', 'cuisine', 'ingredients']
+        fields = ['id', 'name', 'cuisine', 'ingredients', 'image']
 
 
 class DishUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
-        fields = ['name', 'ingredients', 'cuisine']
+        fields = ['name', 'ingredients', 'cuisine', 'image']
 
 # Ingredient Serializer ..
 
