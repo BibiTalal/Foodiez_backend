@@ -82,13 +82,13 @@ class DishUpdateSerializer(serializers.ModelSerializer):
 # Ingredient Serializer ..
 
 
-class IngrediantUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ingredient
-        fields = ['name', 'ingredients', 'category', 'recipe']
-
-
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['id', 'name', "category"]
+        fields = ['id', 'name', 'cuisine']
+
+
+class IngrediantUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = ['name', 'cuisine']

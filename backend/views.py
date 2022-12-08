@@ -56,14 +56,14 @@ class DishUpdateView(UpdateAPIView):
     queryset = Dish.objects.all()
     serializer_class = serializers.DishUpdateSerializer
     lookup_field = 'id'
-    lookup_url_kwarg = 'recipe_id'
+    lookup_url_kwarg = 'dish_id'
 
 
 class DeleteDishView(DestroyAPIView):
     queryset = Dish.objects.all()
     serializer_class = serializers.DishSerializer
     lookup_field = 'id'
-    lookup_url_kwarg = 'recipe_id'
+    lookup_url_kwarg = 'dish_id'
 
 
 # The ingredients Crud ..
@@ -81,14 +81,14 @@ class IngrediantCreateView(CreateAPIView):
 
 
 class IngrediantUpdateView(UpdateAPIView):
-    queryset = Dish.objects.all()
+    queryset = Ingredient.objects.all()
     serializer_class = serializers.IngrediantUpdateSerializer
     lookup_field = 'id'
-    lookup_url_kwarg = 'recipe_id'
+    lookup_url_kwarg = 'ingrediant_id'
 
 
 class DeleteIngrediantView(DestroyAPIView):
     queryset = Ingredient.objects.all()
     serializer_class = serializers.IngredientSerializer
     lookup_field = 'id'
-    lookup_url_kwarg = 'recipe_id'
+    lookup_url_kwarg = 'ingrediant_id'

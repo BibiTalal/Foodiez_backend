@@ -34,10 +34,12 @@ urlpatterns = [
          views.DishUpdateView.as_view(), name='update-dish'),
     path('dish/delete/<int:dish_id>/',
          views.DeleteDishView.as_view(), name='delete-dish'),
-    path('list/ingrediants/', views.IngrediantCreateView.as_view(), name='ingrediants'),
-    path('ingrediants/update/<int:id>/',
+    path('ingrediants/creeate/',
+         views.IngrediantCreateView.as_view(), name='create-ingrediants'),
+    path('list/ingrediants/', views.IngrediantList.as_view(), name='ingrediants'),
+    path('ingrediants/update/<int:ingrediant_id>/',
          views.IngrediantUpdateView.as_view(), name='update-ingrediants'),
-    path('ingrediants/delete/<int:id>/',
+    path('ingrediants/delete/<int:ingrediant_id>/',
          views.DeleteIngrediantView.as_view(), name='delete-ingrediants'),
 ]
 
