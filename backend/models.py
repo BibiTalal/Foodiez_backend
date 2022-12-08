@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Category(models.Model):
+class Cuisine(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -10,27 +10,23 @@ class Category(models.Model):
 
 class Ingredient (models.Model):
     name = models.CharField(max_length=255)
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name='ingredients')
+    cuisine = models.ForeignKey(
+        Cuisine, on_delete=models.CASCADE, related_name='ingredients')
 
     def __str__(self):
         return self.name
 
 
-class Recipe (models.Model):
+class Dish (models.Model):
     name = models.CharField(max_length=255)
-    recipe = models.TextField()
+    dish = models.TextField()
     image = models.ImageField(upload_to='static/media', null=True)
-    # description = models.TextField()
 
     ingredients = models.ManyToManyField(
-        Ingredient, related_name='recipes')
-    # ingredients = models.ManyToManyField(
-    #     Ingredient, related_name='Recipes')
+        Ingredient, related_name='dishes')
 
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name='recipes')
-    # category = models.ManyToManyField(Category, related_name='recipes')
+    cuisine = models.ForeignKey(
+        Cuisine, on_delete=models.CASCADE, related_name='dishes')
 
     def __str__(self):
         return self.name

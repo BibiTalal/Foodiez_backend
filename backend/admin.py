@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Recipe, Ingredient, Category
+from backend.models import Cuisine, Ingredient, Dish
 # Register your models here.
 
-MyModels = [Recipe, Ingredient, Category]
+MyModels = [Cuisine, Dish, Ingredient]
 admin.site.register(MyModels)

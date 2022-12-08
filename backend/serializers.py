@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-from backend.models import Category, Ingredient, Recipe
+from backend.models import Cuisine, Ingredient, Dish
 User = get_user_model()
 
 # Authentications Serializers ..
@@ -60,24 +60,24 @@ class SigninSerializer(serializers.Serializer):
 # Category Serializer ..
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CuisineSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
+        model = Cuisine
         fields = ['id', 'name']
 
 # Recipes Serializer ..
 
 
-class RecipeSerializer(serializers.ModelSerializer):
+class DishSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Recipe
-        fields = ['id', 'name', 'category', 'ingredients', 'recipe']
+        model = Dish
+        fields = ['id', 'name', 'cuisine', 'ingredients']
 
 
-class RecipeUpdateSerializer(serializers.ModelSerializer):
+class DishUpdateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Recipe
-        fields = ['name', 'ingredients', 'category', 'recipe']
+        model = Dish
+        fields = ['name', 'ingredients', 'cuisine']
 
 # Ingredient Serializer ..
 
