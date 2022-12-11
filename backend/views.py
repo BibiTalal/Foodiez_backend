@@ -40,6 +40,20 @@ class Cuisinecreate(CreateAPIView):
 # The Recipe Crud ..
 
 
+class CuisineUpdateView(UpdateAPIView):
+    queryset = Cuisine.objects.all()
+    serializer_class = serializers.CuisineUpdateSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'cuisine_id'
+
+
+class DeleteCuisineView(DestroyAPIView):
+    queryset = Cuisine.objects.all()
+    serializer_class = serializers.CuisineSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'cuisine_id'
+
+
 class Dishlist(ListAPIView):
     queryset = Dish.objects.all()
     serializer_class = serializers.DishSerializer

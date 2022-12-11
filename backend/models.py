@@ -11,8 +11,8 @@ class Cuisine(models.Model):
 
 class Ingredient (models.Model):
     name = models.CharField(max_length=255)
-    cuisine = models.ForeignKey(
-        Cuisine, on_delete=models.CASCADE, related_name='ingredients')
+    # cuisine = models.ForeignKey(
+    #     Cuisine, on_delete=models.CASCADE, related_name='ingredients')
 
     def __str__(self):
         return self.name

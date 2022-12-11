@@ -65,6 +65,12 @@ class CuisineSerializer(serializers.ModelSerializer):
         model = Cuisine
         fields = ['id', 'name', 'image']
 
+
+class CuisineUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cuisine
+        fields = ['name',  'image']
+
 # Recipes Serializer ..
 
 
@@ -85,10 +91,10 @@ class DishUpdateSerializer(serializers.ModelSerializer):
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['id', 'name', 'cuisine']
+        fields = ['id', 'name']
 
 
 class IngrediantUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['name', 'cuisine']
+        fields = ['name']
